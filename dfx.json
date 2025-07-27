@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "canisters": {
+    "willwisher": {
+      "type": "motoko",
+      "source": ["src/backend/main.mo"],
+      "dependencies": [
+        {
+          "canister": "file-storage",
+          "source": "src/backend/file-storage/file-storage.mo"
+        },
+        {
+          "canister": "auth-multi-user",
+          "source": "src/backend/auth-multi-user/management.mo"
+        }
+      ]
+    }
+  },
+  "frontend": {
+    "source": "src/frontend/app.tsx"
+  }
+}
