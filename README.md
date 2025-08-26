@@ -36,9 +36,9 @@ Limited Beta Offer for $1 download. Roll out a waiting list for the first 10,000
 ### Technical Notes
 It takes at least three intensive full days to force Caffeine AI to build a legal document that is legally strict on the language and wordings, put sections and paragraphs in a strict order and sequence. To enforce AI not to deviate from the original will template is like chasing a wild horse. I have spent 3 weeks rewriting the will templates at least 5 times in order to prevent AI from deviating from the original legal language. It takes me few dozens of prompts to ask, beg, and force AI to follow 100% word by word. I’m reaching the limits of Vibe Coding. It’s important that Caffeine AI will evolve to Context Engineering, where I apply system instructions, relevant doc, and project patterns on challenging legal tech app. It is easy to build prototypes, but it is extremely difficult to build a legally structured data-intensive app at the production level. Currently, AI driven prototypes are not 100% repeatable via Vibe coding.
 
-LAST WILL AND TESTAMENT 
-OF 
-[FULL LEGAL NAME OF TESTATOR]
+### LAST WILL AND TESTAMENT 
+### OF 
+### [FULL LEGAL NAME OF TESTATOR]
 
 ARTICLE I: DECLARATION
 
@@ -157,6 +157,41 @@ Notary Public
 Name:
 Address:
 
+# Here is the complete list of placeholders used in the will template:
+ [Full Legal Name of Testator]
+ [single/married/divorced/widowed]
+ [Full Name of Present Spouse]
+ [Full Name of Former Spouse]
+ [divorce/death]
+ [Full Name of Child 1], [Date of Birth of Child 1]
+ [Full Name of Child 2], [Date of Birth of Child 2]
+ [Full Name of Residuary Beneficiary 1], [Your Relationship], [%]
+ [Full Name of Residuary Beneficiary 2], [Your Relationship], [%]
+ [Description of Property], [Full Name of Specific Beneficiary], [Full Name of Alternate Beneficiary]
+ [Address or Legal Description of Property], [Full Name of Beneficiary]
+ [Email Account Name], [Gmail / Yahoo Mail / Microsoft Mail / AOL Mail / iCloud Mail / Other], [closed / maintained]
+ [Social Account Name], [Meta, Instagram / Meta Messenger / TikTok / iMessage / X (Twitter) / Pinterest / Snapchat / LinkedIn / Reddit / Other], [closed / maintained]
+ [Tech Account Name], [YouTube / Amazon / eBay / Etsy / Walmart / Netflix / Discord / Go Daddy / Other], [closed / maintained]
+ [Crypto Wallet Name], [OISY Wallet / MetaMask / Trust Wallet / Other], [Digital Assets Beneficiary]
+ [Crypto Exchange Name], [Coinbase / Binance / Kraken / Gemini /  / Robinhood Crypto / Bitstamp / Other], [Digital Assets Beneficiary]
+ [Full Name of Digital Executor]
+ [Full Name of Successor Executor]
+ [Cremated/Buried]
+ [Buried Location]
+ [held/not held]
+ [Full Name of Funeral Representative]
+ [Full Name of Alternative Funeral Representative]
+ [Full Name of Primary Executor]
+ [Full Name of Successor Executor]
+ [bond / no bond]
+ [Full Name of Primary Guardian]
+ [Full Name of Successor Guardian]
+ [Execution Date]
+ [Execution City]
+ [Date of Notarization]
+ [County]
+ [Notary Name]
+ [Notary Address]
 
 
 Copyright © 2025 Will Wisher. All Rights Reserved.
