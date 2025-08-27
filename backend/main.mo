@@ -1,188 +1,108 @@
+import AccessControl "authorization/access-control";
+import Registry "blob-storage/registry";
+import Principal "mo:base/Principal";
 import OrderedMap "mo:base/OrderedMap";
 import Text "mo:base/Text";
-import Iter "mo:base/Iter";
-import Principal "mo:base/Principal";
-import Result "mo:base/Result";
 import Time "mo:base/Time";
-import FileStorage "file-storage/file-storage";
-import MultiUserSystem "auth-multi-user/management";
+import Debug "mo:base/Debug";
+import Array "mo:base/Array";
 
-persistent actor WillWisher {
-    type WillData = {
-        testatorName : Text;
-        executorName : Text;
-        alternateExecutorName : Text;
-        guardianName : Text;
-        alternateGuardianName : Text;
-        specificGifts : [(Text, Text)]; // (Beneficiary, Item)
-        residuaryBeneficiaries : [(Text, Nat)]; // (Beneficiary, Percentage)
-        witnesses : [Text];
-        completionStatus : Nat; // Percentage of completion
+persistent actor {
+    // Initialize the user system state
+    let accessControlState = AccessControl.initState();
+
+    // Initialize auth (first caller becomes admin, others become users)
+    public shared ({ caller }) func initializeAccessControl() : async () {
+        AccessControl.initialize(accessControlState, caller);
     };
 
-    type WillDraft = {
-        id : Text;
-        data : WillData;
-        lastModified : Int;
+    public query ({ caller }) func getCallerUserRole() : async AccessControl.UserRole {
+        AccessControl.getUserRole(accessControlState, caller);
     };
 
-    type TrustData = {
-        trustorName : Text;
-        trusteeName : Text;
-        successorTrusteeName : Text;
-        trustName : Text;
-        trustAssets : [(Text, Text)]; // (Type, Description)
-        beneficiaries : [(Text, Nat)]; // (Name, Percentage)
-        distributionTerms : Text;
-        completionStatus : Nat;
+    public shared ({ caller }) func assignCallerUserRole(user : Principal, role : AccessControl.UserRole) : async () {
+        AccessControl.assignRole(accessControlState, caller, user, role);
     };
 
-    type TrustDraft = {
-        id : Text;
-        data : TrustData;
-        lastModified : Int;
+    public query ({ caller }) func isCallerAdmin() : async Bool {
+        AccessControl.isAdmin(accessControlState, caller);
     };
 
-    type UserProfile = {
-        principal : Principal;
+    public type UserProfile = {
         name : Text;
-        email : Text;
+        // Other user metadata if needed
     };
 
-    transient let textMap = OrderedMap.Make<Text>(Text.compare);
     transient let principalMap = OrderedMap.Make<Principal>(Principal.compare);
+    var userProfiles = principalMap.empty<UserProfile>();
 
-    var willDrafts : OrderedMap.Map<Text, WillDraft> = textMap.empty<WillDraft>();
-    var trustDrafts : OrderedMap.Map<Text, TrustDraft> = textMap.empty<TrustDraft>();
-    var userProfiles : OrderedMap.Map<Principal, UserProfile> = principalMap.empty<UserProfile>();
-    var storage = FileStorage.new();
-    var multiUserState = MultiUserSystem.initState();
-
-    // Will Draft Functions
-    public shared ({ caller }) func saveWillDraft(draftId : Text, willData : WillData) : async Result.Result<(), Text> {
-        if (Principal.isAnonymous(caller)) {
-            return #err("Anonymous users cannot save will drafts");
-        };
-
-        let draft : WillDraft = {
-            id = draftId;
-            data = willData;
-            lastModified = Time.now();
-        };
-
-        willDrafts := textMap.put(willDrafts, draftId, draft);
-        #ok();
+    public query ({ caller }) func getCallerUserProfile() : async ?UserProfile {
+        principalMap.get(userProfiles, caller);
     };
 
-    public shared ({ caller }) func getWillDraft(draftId : Text) : async Result.Result<WillDraft, Text> {
-        if (Principal.isAnonymous(caller)) {
-            return #err("Anonymous users cannot retrieve will drafts");
-        };
-
-        switch (textMap.get(willDrafts, draftId)) {
-            case null { #err("Will draft not found") };
-            case (?draft) { #ok(draft) };
-        };
+    public query func getUserProfile(user : Principal) : async ?UserProfile {
+        principalMap.get(userProfiles, user);
     };
 
-    public shared ({ caller }) func deleteWillDraft(draftId : Text) : async Result.Result<(), Text> {
-        if (Principal.isAnonymous(caller)) {
-            return #err("Anonymous users cannot delete will drafts");
-        };
-
-        willDrafts := textMap.delete(willDrafts, draftId);
-        #ok();
-    };
-
-    public shared ({ caller }) func getAllWillDrafts() : async Result.Result<[WillDraft], Text> {
-        if (Principal.isAnonymous(caller)) {
-            return #err("Anonymous users cannot retrieve will drafts");
-        };
-
-        let drafts = Iter.toArray(textMap.vals(willDrafts));
-        #ok(drafts);
-    };
-
-    // Trust Draft Functions
-    public shared ({ caller }) func saveTrustDraft(draftId : Text, trustData : TrustData) : async Result.Result<(), Text> {
-        if (Principal.isAnonymous(caller)) {
-            return #err("Anonymous users cannot save trust drafts");
-        };
-
-        let draft : TrustDraft = {
-            id = draftId;
-            data = trustData;
-            lastModified = Time.now();
-        };
-
-        trustDrafts := textMap.put(trustDrafts, draftId, draft);
-        #ok();
-    };
-
-    public shared ({ caller }) func getTrustDraft(draftId : Text) : async Result.Result<TrustDraft, Text> {
-        if (Principal.isAnonymous(caller)) {
-            return #err("Anonymous users cannot retrieve trust drafts");
-        };
-
-        switch (textMap.get(trustDrafts, draftId)) {
-            case null { #err("Trust draft not found") };
-            case (?draft) { #ok(draft) };
-        };
-    };
-
-    public shared ({ caller }) func deleteTrustDraft(draftId : Text) : async Result.Result<(), Text> {
-        if (Principal.isAnonymous(caller)) {
-            return #err("Anonymous users cannot delete trust drafts");
-        };
-
-        trustDrafts := textMap.delete(trustDrafts, draftId);
-        #ok();
-    };
-
-    public shared ({ caller }) func getAllTrustDrafts() : async Result.Result<[TrustDraft], Text> {
-        if (Principal.isAnonymous(caller)) {
-            return #err("Anonymous users cannot retrieve trust drafts");
-        };
-
-        let drafts = Iter.toArray(textMap.vals(trustDrafts));
-        #ok(drafts);
-    };
-
-    // User Profile Functions
-    public shared ({ caller }) func saveUserProfile(name : Text, email : Text) : async Result.Result<(), Text> {
-        if (Principal.isAnonymous(caller)) {
-            return #err("Anonymous users cannot save profiles");
-        };
-
-        let profile : UserProfile = {
-            principal = caller;
-            name = name;
-            email = email;
-        };
-
+    public shared ({ caller }) func saveCallerUserProfile(profile : UserProfile) : async () {
         userProfiles := principalMap.put(userProfiles, caller, profile);
-        #ok();
     };
 
-    public shared ({ caller }) func getUserProfile() : async Result.Result<UserProfile, Text> {
-        if (Principal.isAnonymous(caller)) {
-            return #err("Anonymous users cannot retrieve profiles");
+    // Will Wisher specific code
+
+    public type WillDraft = {
+        id : Text;
+        title : Text;
+        content : Text;
+        lastModified : Time.Time;
+    };
+
+    var willDrafts = principalMap.empty<WillDraft>();
+
+    public shared ({ caller }) func saveWillDraft(draft : WillDraft) : async () {
+        if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+            Debug.trap("Unauthorized: Only users can save drafts");
         };
+        willDrafts := principalMap.put(willDrafts, caller, draft);
+    };
 
-        switch (principalMap.get(userProfiles, caller)) {
-            case null { #err("User profile not found") };
-            case (?profile) { #ok(profile) };
+    public query ({ caller }) func getWillDraft() : async ?WillDraft {
+        if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+            Debug.trap("Unauthorized: Only users can retrieve drafts");
         };
+        principalMap.get(willDrafts, caller);
     };
 
-    // File Storage Functions
-    public func listFiles() : async [FileStorage.FileMetadata] {
-        FileStorage.list(storage);
+    public query ({ caller }) func listWillDrafts() : async [WillDraft] {
+        if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+            Debug.trap("Unauthorized: Only users can list drafts");
+        };
+        var userDrafts : [WillDraft] = [];
+        for ((owner, draft) in principalMap.entries(willDrafts)) {
+            if (owner == caller) {
+                userDrafts := Array.append(userDrafts, [draft]);
+            };
+        };
+        userDrafts;
     };
 
-    // Multi-User System Initialization
-    public shared ({ caller }) func initializeAuth() : async () {
-        MultiUserSystem.initializeAuth(multiUserState, caller);
+    // File registry for .docx exports
+    let registry = Registry.new();
+
+    public func registerFileReference(path : Text, hash : Text) : async () {
+        Registry.add(registry, path, hash);
+    };
+
+    public query func getFileReference(path : Text) : async Registry.FileReference {
+        Registry.get(registry, path);
+    };
+
+    public query func listFileReferences() : async [Registry.FileReference] {
+        Registry.list(registry);
+    };
+
+    public func dropFileReference(path : Text) : async () {
+        Registry.remove(registry, path);
     };
 };
 

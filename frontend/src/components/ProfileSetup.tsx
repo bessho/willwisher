@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { User, Mail, Save } from 'lucide-react';
 import { useSaveUserProfile } from '../hooks/useQueries';
+import { User, FileText } from 'lucide-react';
+import LoadingSpinner from './LoadingSpinner';
 
-export function ProfileSetup() {
+export default function ProfileSetup() {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const saveProfileMutation = useSaveUserProfile();
+  const saveProfile = useSaveUserProfile();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (name.trim() && email.trim()) {
+    if (name.trim()) {
       try {
-        await saveProfileMutation.mutateAsync({ name: name.trim(), email: email.trim() });
+        await saveProfile.mutateAsync({ name: name.trim() });
       } catch (error) {
         console.error('Failed to save profile:', error);
       }
@@ -19,68 +19,68 @@ export function ProfileSetup() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
-      <div className="max-w-md w-full mx-4">
-        <div className="bg-white rounded-2xl shadow-xl p-8">
-          <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <User className="w-8 h-8 text-blue-600" />
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <div className="text-center">
+          <div className="flex justify-center">
+            <div className="flex items-center justify-center h-16 w-16 rounded-full bg-blue-100">
+              <FileText className="h-8 w-8 text-blue-600" />
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome to Will Wisher!</h2>
-            <p className="text-gray-600">Please complete your profile to get started</p>
           </div>
+          <h2 className="mt-6 text-3xl font-bold text-gray-900">Welcome to Will Wisher</h2>
+          <p className="mt-2 text-sm text-gray-600">
+            Let's get started by setting up your profile
+          </p>
+        </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Full Name
-              </label>
-              <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Enter your full name"
-                  required
-                />
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              Your Full Legal Name
+            </label>
+            <div className="mt-1 relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <User className="h-5 w-5 text-gray-400" />
               </div>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                placeholder="Enter your full legal name"
+              />
             </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Email Address
-              </label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Enter your email address"
-                  required
-                />
-              </div>
-            </div>
-
-            <button
-              type="submit"
-              disabled={saveProfileMutation.isPending || !name.trim() || !email.trim()}
-              className="w-full flex items-center justify-center px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <Save className="w-4 h-4 mr-2" />
-              {saveProfileMutation.isPending ? 'Setting up...' : 'Complete Setup'}
-            </button>
-          </form>
-
-          <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-            <p className="text-sm text-blue-800">
-              Your account will be reviewed by an administrator before you can access the will creation features.
+            <p className="mt-2 text-xs text-gray-500">
+              This name will be used throughout your will documents
             </p>
           </div>
-        </div>
+
+          <div>
+            <button
+              type="submit"
+              disabled={!name.trim() || saveProfile.isPending}
+              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {saveProfile.isPending ? (
+                <>
+                  <LoadingSpinner size="sm" className="mr-2" />
+                  Setting up...
+                </>
+              ) : (
+                'Continue to Dashboard'
+              )}
+            </button>
+          </div>
+
+          {saveProfile.error && (
+            <div className="text-red-600 text-sm text-center">
+              Failed to save profile. Please try again.
+            </div>
+          )}
+        </form>
       </div>
     </div>
   );

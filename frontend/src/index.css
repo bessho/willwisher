@@ -14,298 +14,124 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200;
+    @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed;
   }
   
   .btn-secondary {
-    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-md transition-colors duration-200;
+    @apply inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
   }
   
-  .input-field {
-    @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+  .form-input {
+    @apply block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
   }
   
-  .card {
-    @apply bg-white rounded-lg shadow-sm border p-6;
-  }
-
-  .sample-document {
-    position: relative;
-  }
-
-  .sample-watermark {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: rgba(59, 130, 246, 0.1);
-    color: #3b82f6;
-    padding: 8px 16px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border: 1px solid rgba(59, 130, 246, 0.2);
-    z-index: 10;
-  }
-
-  /* Logo styling */
-  .app-logo {
-    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-    transition: all 0.3s ease;
-  }
-
-  .app-logo:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
-  }
-
-  .app-logo svg {
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
-  }
-
-  /* Login page specific animations */
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-float-delayed {
-    animation: float 6s ease-in-out infinite;
-    animation-delay: 2s;
-  }
-
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-  }
-
-  /* Enhanced gradient backgrounds */
-  .bg-gradient-mesh {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-  }
-
-  @keyframes gradientShift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  /* Document illustration styles */
-  .document-stack {
-    perspective: 1000px;
-  }
-
-  .document-card {
-    transform-style: preserve-3d;
-    transition: transform 0.3s ease;
-  }
-
-  .document-card:hover {
-    transform: rotateY(5deg) rotateX(5deg);
-  }
-
-  /* Enhanced feature highlight boxes */
-  .feature-box {
-    @apply bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300;
-  }
-
-  .feature-box:hover {
-    transform: translateY(-2px);
-  }
-
-  /* Enhanced feature cards with better styling */
-  .feature-card {
-    @apply bg-white rounded-2xl p-8 shadow-lg border-2 border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 1) 100%);
-    backdrop-filter: blur(10px);
-  }
-
-  .feature-card:hover {
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-  }
-
-  /* Login button enhancements */
-  .login-button {
-    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
-    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
-    transition: all 0.3s ease;
-  }
-
-  .login-button:hover {
-    box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
-    transform: translateY(-2px);
-  }
-
-  .login-button:active {
-    transform: translateY(0px);
-  }
-
-  /* Header logo styling */
-  .header-logo {
-    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
-    transition: all 0.2s ease;
-  }
-
-  .header-logo:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
-  }
-
-  /* Login page hero logo */
-  .hero-logo {
-    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
-    box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
-    transition: all 0.3s ease;
-  }
-
-  .hero-logo:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 12px 40px rgba(59, 130, 246, 0.4);
-  }
-
-  /* Enhanced visual elements for the landing page */
-  .visual-enhancement {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .visual-enhancement::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(59, 130, 246, 0.1), transparent);
-    animation: shimmer 3s infinite;
-  }
-
-  @keyframes shimmer {
-    0% {
-      transform: translateX(-100%) translateY(-100%) rotate(45deg);
-    }
-    100% {
-      transform: translateX(100%) translateY(100%) rotate(45deg);
-    }
-  }
-
-  /* App screenshot styling */
-  .app-screenshot {
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .app-screenshot:hover {
-    transform: scale(1.02);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-  }
-
-  /* Demo video styling */
-  .demo-video {
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-  }
-
-  .demo-video:hover {
-    transform: scale(1.02);
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-  }
-
-  /* Gradient text effects */
-  .gradient-text {
-    background: linear-gradient(135deg, #3b82f6, #6366f1, #8b5cf6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Enhanced button hover effects */
-  .enhanced-button {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-
-  .enhanced-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
-  }
-
-  .enhanced-button:hover::before {
-    left: 100%;
-  }
-}
-
-@layer utilities {
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-in-out;
+  .form-textarea {
+    @apply block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
   }
   
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .form-select {
+    @apply block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
   }
 
-  /* Text gradient utilities */
-  .text-gradient {
-    background: linear-gradient(135deg, #3b82f6, #6366f1, #8b5cf6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  /* Professional typography for legal documents */
+  .font-inter {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   }
 
-  .text-gradient-green {
-    background: linear-gradient(135deg, #10b981, #059669);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .font-legal {
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.6;
   }
 
-  /* Backdrop blur utilities */
-  .backdrop-blur-glass {
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.8);
+  /* Professional will document styling */
+  .will-content {
+    @apply font-inter;
   }
 
-  /* Enhanced shadow utilities */
-  .shadow-feature {
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  .will-content h1 {
+    @apply text-3xl font-bold text-gray-900 mb-6 font-inter leading-tight text-center;
   }
 
-  .shadow-feature-hover {
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15), 0 15px 15px -5px rgba(0, 0, 0, 0.08);
+  .will-content h2 {
+    @apply text-2xl font-bold text-gray-900 mb-4 font-inter leading-tight text-center;
+  }
+
+  .will-content h3 {
+    @apply text-xl font-bold text-gray-900 mb-4 font-inter leading-tight;
+  }
+
+  .will-content p {
+    @apply text-base text-gray-700 font-inter leading-relaxed mb-4;
+  }
+
+  .will-content strong {
+    @apply font-semibold;
+  }
+
+  .will-content section {
+    @apply space-y-4 mb-8;
+  }
+
+  .will-content ul {
+    @apply space-y-1 ml-4;
+  }
+
+  .will-content li {
+    @apply text-base font-inter leading-relaxed;
+  }
+
+  /* Consistent spacing for legal document sections */
+  .will-content .article-header {
+    @apply text-xl font-bold text-gray-900 mb-6 font-inter leading-tight border-b border-gray-200 pb-2;
+  }
+
+  .will-content .article-content {
+    @apply space-y-4 mb-8;
+  }
+
+  /* Professional attestation section styling */
+  .attestation-section {
+    @apply bg-gray-50 p-6 rounded-lg font-mono text-sm leading-relaxed border border-gray-200;
+  }
+
+  .attestation-section p {
+    @apply mb-4 text-gray-800;
+  }
+
+  .attestation-section .signature-line {
+    @apply border-b border-gray-400 inline-block min-w-64 mb-2;
+  }
+
+  /* Print-ready styling */
+  .print-ready {
+    @apply bg-white text-black;
+    font-family: 'Times New Roman', Times, serif;
+    line-height: 1.8;
+    font-size: 12pt;
+  }
+
+  .print-ready h1, .print-ready h2, .print-ready h3 {
+    @apply text-black;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  .print-ready .article-title {
+    @apply text-lg font-bold mb-4 text-center;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  /* Legal document formatting */
+  .legal-paragraph {
+    @apply text-justify leading-relaxed mb-4;
+    text-indent: 2em;
+  }
+
+  .legal-signature-block {
+    @apply mt-8 space-y-4;
+  }
+
+  .legal-signature-line {
+    @apply border-b border-gray-600 inline-block min-w-80 mr-4;
   }
 }
 
@@ -326,69 +152,189 @@
   @apply bg-gray-500;
 }
 
-/* Focus styles for accessibility */
-.focus-visible {
-  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
-}
-
 /* Print styles for will documents */
 @media print {
   .no-print {
     display: none !important;
   }
   
-  .print-page-break {
+  .print-break-before {
     page-break-before: always;
   }
+  
+  .print-break-after {
+    page-break-after: always;
+  }
+  
+  body {
+    @apply bg-white text-black;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
+    line-height: 1.8;
+  }
+
+  .will-content {
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  .will-content h1, .will-content h2, .will-content h3 {
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+  }
+
+  .will-content p {
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+    text-align: justify;
+  }
 }
 
-/* Responsive design enhancements */
+/* Animation for save status */
+@keyframes pulse-green {
+  0%, 100% {
+    @apply text-green-600;
+  }
+  50% {
+    @apply text-green-400;
+  }
+}
+
+.save-success {
+  animation: pulse-green 1s ease-in-out;
+}
+
+/* Loading animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Form validation styles */
+.form-error {
+  @apply border-red-300 focus:border-red-500 focus:ring-red-500;
+}
+
+.error-message {
+  @apply text-red-600 text-sm mt-1;
+}
+
+/* Progress bar animation */
+.progress-bar {
+  transition: width 0.3s ease-in-out;
+}
+
+/* Hover effects for interactive elements */
+.hover-lift {
+  transition: transform 0.2s ease-in-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-1px);
+}
+
+/* Focus styles for accessibility */
+.focus-visible:focus {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+}
+
+/* Mobile-specific styles */
 @media (max-width: 640px) {
-  .login-hero {
-    padding: 2rem 1rem;
+  .mobile-full-width {
+    @apply w-full;
   }
   
-  .feature-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  .mobile-text-sm {
+    @apply text-sm;
   }
 
-  .feature-card {
-    padding: 1.5rem;
+  .will-content h1 {
+    @apply text-2xl;
+  }
+
+  .will-content h2 {
+    @apply text-xl;
+  }
+
+  .will-content h3 {
+    @apply text-lg;
   }
 }
 
-/* Dark mode support (future enhancement) */
+/* Enhanced professional styling for legal documents */
+.legal-document {
+  @apply max-w-4xl mx-auto bg-white shadow-lg;
+  font-family: 'Times New Roman', Times, serif;
+  line-height: 1.8;
+}
+
+.legal-document-header {
+  @apply text-center py-8 border-b-2 border-gray-300;
+}
+
+.legal-document-title {
+  @apply text-3xl font-bold mb-4;
+  font-family: 'Times New Roman', Times, serif;
+  letter-spacing: 0.1em;
+}
+
+.legal-document-subtitle {
+  @apply text-xl font-semibold;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.legal-article {
+  @apply py-6 border-b border-gray-200;
+}
+
+.legal-article-title {
+  @apply text-lg font-bold mb-4 text-center;
+  font-family: 'Times New Roman', Times, serif;
+  text-decoration: underline;
+}
+
+.legal-paragraph {
+  @apply mb-4 text-justify;
+  text-indent: 2em;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.legal-list {
+  @apply ml-8 mb-4;
+}
+
+.legal-list-item {
+  @apply mb-2;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* Signature and attestation styling */
+.signature-section {
+  @apply mt-12 space-y-8;
+}
+
+.signature-block {
+  @apply space-y-4;
+}
+
+.signature-line {
+  @apply border-b border-black inline-block min-w-80;
+  height: 1px;
+}
+
+.witness-block {
+  @apply grid grid-cols-2 gap-8 mt-8;
+}
+
+.notary-block {
+  @apply mt-12 p-6 border-2 border-black;
+}
+
+/* Dark mode support (if needed in future) */
 @media (prefers-color-scheme: dark) {
-  .dark-mode-ready {
-    @apply bg-gray-900 text-gray-100;
-  }
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .high-contrast {
-    @apply border-2 border-black;
-  }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  .animate-bounce,
-  .animate-pulse,
-  .animate-float,
-  .animate-float-delayed,
-  .shimmer {
-    animation: none;
-  }
-  
-  .transition-all,
-  .transition-transform,
-  .transition-colors {
-    transition: none;
-  }
-
-  .feature-card:hover {
-    transform: none;
-  }
+  /* Dark mode styles can be added here */
 }

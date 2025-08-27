@@ -1,13 +1,17 @@
-import { useInternetIdentity } from 'ic-use-internet-identity';
-import { createActor, type backendInterface } from '../backend';
+import { useInternetIdentity } from './useInternetIdentity';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
+import { type backendInterface } from '../backend';
+import { createActorWithConfig } from '../config';
+
+interface ExtendedBackendInterface extends backendInterface {
+    initializeAccessControl: () => Promise<void>;
+}
 
 const ACTOR_QUERY_KEY = 'actor';
 export function useActor() {
     const { identity } = useInternetIdentity();
     const queryClient = useQueryClient();
-
     const actorQuery = useQuery<backendInterface>({
         queryKey: [ACTOR_QUERY_KEY, identity?.getPrincipal().toString()],
         queryFn: async () => {
@@ -15,7 +19,7 @@ export function useActor() {
 
             if (!isAuthenticated) {
                 // Return anonymous actor if not authenticated
-                return await createActor();
+                return await createActorWithConfig();
             }
 
             const actorOptions = {
@@ -24,8 +28,14 @@ export function useActor() {
                 }
             };
 
-            const actor = await createActor(actorOptions);
-            await actor.initializeAuth();
+            const actor = await createActorWithConfig(actorOptions);
+            // Check if initializeAccessControl exists and call it (some backends may not have this method)
+            if (
+                'initializeAccessControl' in actor &&
+                typeof (actor as ExtendedBackendInterface).initializeAccessControl === 'function'
+            ) {
+                await (actor as ExtendedBackendInterface).initializeAccessControl();
+            }
             return actor;
         },
         // Only refetch when identity changes

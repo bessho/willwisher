@@ -1,194 +1,245 @@
-# Will Wisher
+# Will Wisher   California Will Creation Application
 
 ## Overview
-Will Wisher is a web application that helps clients in California create legal wills and revocable living trust agreements through a guided, step-by-step process. Users can save drafts and download completed documents as editable files.
+Will Wisher is a web application that allows authenticated users to create, edit, and save California wills using a specific legal template. The application provides a guided form interface for completing will documents and enables users to export their completed wills as Word documents.
 
 ## Authentication
-- Users authenticate using Internet Identity
-- Each user has their own private workspace for creating and managing wills and trusts
-- Authentication system must properly handle login, logout, and session management
-- Users must be able to successfully authenticate and gain access to the application features
-- All users are automatically approved upon registration with no manual approval required
-
-## Branding and Visual Identity
-- Custom logo prominently displayed on the entry page as a key visual element
-- Logo appears consistently in the header of all web pages throughout the application
-- Logo placement ensures strong brand recognition and professional appearance across all pages
-- Logo maintains consistent sizing and positioning for unified branding experience
-
-## Entry Page Design
-- Professional, polished SaaS startup-inspired landing page design with modern aesthetics
-- Clean, contemporary layout with strategic use of whitespace and visual hierarchy
-- Modern typography with carefully selected fonts that convey professionalism and trustworthiness
-- Visually appealing graphics or illustrations that represent legal document creation and security
-- Custom logo prominently featured as a primary visual element with professional placement
-- Hero section with compelling headline and value proposition that immediately communicates the app's purpose
-- Screenshot of the application interface prominently displayed in the cover section to showcase the actual app experience
-- Expanded feature highlights section with visually prominent and engaging presentation of key benefits including:
-  - Secure will and trust creation
-  - Auto-save functionality
-  - Editable document downloads
-  - Internet Identity login security
-  - California legal compliance
-  - Step-by-step guided process
-  - Draft management capabilities
-  - Sample document references
-  - Professional document generation
-  - User-friendly interface design
-- Enhanced feature showcase section with icons or illustrations for each major benefit, designed to be more visually striking and engaging
-- Professional color scheme and visual elements that build trust for legal document creation
-- Modern call-to-action buttons with clear visual hierarchy and engaging design
-- Responsive design that looks polished across all device sizes
-- Visual elements that communicate reliability, security, and professionalism for sensitive legal information
-- Contemporary design patterns commonly found in successful SaaS applications
-- Strong first impression that establishes credibility and encourages user engagement
-
-## User Management
-- Admin users have special privileges to manage the application
-- Admin dashboard to view and manage users with controls for managing user roles
-- Admin controls include viewing all users and managing their roles and permissions
-- User approval is set to automatic by default so admins do not need to manually approve new registrations
-- Regular users gain immediate full access to will and trust creation features upon authentication
-- No approval workflow needed for new user registrations due to automatic approval setting
+- Uses Internet Identity for user authentication
+- All features require user authentication
+- Each user has access only to their own will drafts
 
 ## Core Features
 
-### Sample Documents Feature
-- "Sample for Reference" section that provides fully completed will and trust examples using fictional persona data
-- Sample documents use realistic but fictional information to demonstrate proper completion
-- Sample will and trust are clearly labeled as "Sample for Reference" throughout the UI
-- Sample documents include visible "DRAFT" watermark in document previews
-- Downloaded sample Word files contain visible "DRAFT" watermark if technically possible
-- Sample documents serve as reference examples for users to understand proper completion
-- Sample functionality is separate from user's personal draft creation workflow
+### Will Template System
+- Uses an exact California will legal template with header and ten Articles
+- Preserves all article titles, sections, and placeholder text word-for-word in correct order
+- Template includes specific placeholders that map to user input fields
+- Article I: DECLARATION begins with the exact paragraph: "I, [Full Legal Name of Testator], a resident of the State of California, being of sound mind and memory, and not acting under duress, menace, fraud, or undue influence, do hereby make, publish, and declare this to be my Last Will and Testament, revoking all prior wills and codicils made by me."
+- Article I continues with specific placeholders: [single/married/divorced/widowed], [Full Name of Present Spouse], [Full Name of Former Spouse], [divorce/death], [Full Name of Child 1], [Date of Birth of Child 1], [Full Name of Child 2], [Date of Birth of Child 2]
+- Article I structure and content must match exactly word for word with all specified placeholders in correct positions
+- Article II: DEBTS AND EXPENSES contains exactly: "I direct that all my legally enforceable debts, funeral expenses, expenses of last illness and administration of my estate be paid as soon as practicable after my death." This article is static with no user input fields or placeholders
+- Article III: RESIDUARY ESTATE contains exactly: "I give, devise, and bequeath all my property, both real and personal, of every kind and nature, and wherever situated, which I may own at the time of my death (my 'residuary estate'), to the following beneficiaries in the proportions specified:" followed by dynamic beneficiary entries in the format "To [Full Name of Residuary Beneficiary], [Your Relationship], [%] of my estate." and concludes with "If any beneficiary named above does not survive me by the California default 120 hours (5 days), that beneficiary's share shall be distributed equally among the surviving beneficiaries named above."
+- Article IV: SPECIFIC BEQUESTS includes a checkbox allowing the testator to indicate if they wish to give real property to a beneficiary. If checked, allows multiple real property bequests using the exact template sentence: "I give my real property located at [Address or Legal Description of Property] to [Full Name of Beneficiary], subject to any encumbrances or liens existing at the time of my death."
+- Article IV: SPECIFIC BEQUESTS also includes a personal property section with the exact template: "I give [Description of Property] to [Full Name of Specific Beneficiary]. If [Full Name of Specific Beneficiary] does not survive me, this bequest shall go to [Full Name of Alternate Beneficiary]. If any beneficiary named in this section predeceases me, the gift to that beneficiary shall lapse and become part of my residuary estate unless otherwise specified."
+- Article V: DIGITAL ASSETS contains the exact template beginning with nomination of Digital Executor and Successor Digital Executor, followed by two specific legal paragraphs: First paragraph: "Digital Assets" include, without limitation, emails, social media, cloud, server, domain names, electronic files, and cryptocurrencies, regardless of their storage medium or location. I direct that the following Digital Assets to be handled as follows:" Second paragraph: "The Digital Executor is authorized to access, manage, control, transfer, or close Digital Assets to the extent permitted by law and provider terms. The Executor may request usernames, passwords, and decryption keys and may seek court orders, if necessary, under the Revised Uniform Fiduciary Access to Digital Assets Act (Cal. Prob. Code §§870–884). This grant does not require the Executor to violate applicable Terms of Service or criminal law; where access requires additional legal process, the Digital Executor may seek court authority. For cryptocurrency or private keys, the Testator expressly authorizes transfer of private keys and cryptocurrency to the Digital Executor." Then sections for digital assets to be closed or maintained including email accounts with fields for [Email Account Name], [Gmail / Yahoo Mail / Microsoft Mail / AOL Mail / iCloud Mail / Other], and should be [closed / maintained]; social accounts with fields for [Social Account Name], [Meta, Instagram / Meta Messenger / TikTok / iMessage / X (Twitter) / Pinterest / Snapchat / LinkedIn / Reddit / Other], and should be [closed / maintained]; tech accounts with fields for [Tech Account Name], [YouTube / Amazon / eBay / Etsy / Walmart / Netflix / Discord / Go Daddy / Other], and should be [closed / maintained]; and digital assets to be transferred including crypto wallets with fields for [Crypto Wallet Name], [OISY Wallet / MetaMask / Trust Wallet / Other], shall be transferred to [Digital Assets Beneficiary], and crypto exchanges with fields for [Crypto Exchange Name], [Coinbase / Binance / Kraken / Gemini / Crypto.com / Robinbood Crypto / Bitstamp / Other], shall be transferred to [Digital Assets Beneficiary]
+- Article V: DIGITAL ASSETS includes the exact sentence "DIGITAL ASSETS TO BE TRANSFERRED TO A SPECIFIC BENEFICIARY:" for the digital assets transfer section
+- Article VI: FUNERAL AND BURIAL INSTRUCTIONS contains exactly: "I direct that my remains be [Cremated/Buried] at [Buried Location]. A funeral or memorial service shall be [held/not held] as per my written or verbal instructions provided to my Executor. I nominate [Full Name of Funeral Representative] as the individual responsible for arranging my funeral and burial services. If [Full Name of Funeral Representative] is unable or unwilling to serve, I nominate [Full Name of Alternative Funeral Representative] as a substitute."
+- Article VII: EXECUTOR contains the exact template with three paragraphs: First paragraph: "I hereby nominate and appoint [Full Name of Primary Executor] as the Executor of this Will. If [Full Name of Primary Executor] is unable or unwilling to serve, I nominate [Full Name of Successor Executor] as Successor Executor." Second paragraph: "I grant to my Executor full power and authority to sell, transfer, and convey any and all property, real or personal, at public or private sale, with or without notice, and to execute and deliver any and all deeds, assignments, and other instruments necessary to carry out the provisions of this Will." Third paragraph: "I direct that [bond] be required of any Executor named herein to post bond for the faithful performance of their duties." with default value "bond" unless expressly waived by testator
+- Article VIII: GUARDIANSHIP contains exactly: "If I have any minor children at the time of my death, I nominate [Full Name of Primary Guardian] to serve as Guardian of the person and estate of my minor children. If [Full Name of Primary Guardian] is unable or unwilling to serve, I nominate [Full Name of Successor Guardian] as Successor Guardian. I direct that [bond] be required of any Guardian named herein to post bond for the faithful performance of their duties." with default value "bond" unless expressly waived by testator
+- Article VIII: GUARDIANSHIP can be skipped entirely if the user indicates they have no minor children
+- Article IX: MISCELLANEOUS PROVISIONS contains exactly: "No Contest: If any person contests or attempts to invalidate any provision of this Will without probable cause, such person shall forfeit any interest in my estate. Simultaneous Death: If any beneficiary and I die under circumstances where the order of death cannot be determined, it shall be presumed that I survived the beneficiary. Severability Clause: If any provision of this Will is determined to be invalid or unenforceable, the remaining provisions shall remain in full force and effect. Governing Law: This Will shall be governed by the laws of the State of California."
+- Article X: ATTESTATION contains exactly: "I declare that this document is my Last Will and Testament. I sign it knowingly and voluntarily, in the presence of the witnesses below. Executed on [Execution Date], at [Execution City], California. Signature of Testator: ____________________________ Printed Name of Testator: [Full Legal Name of Testator] WITNESSES' ATTESTATION We, the undersigned, declare: The Testator signed this Will in our presence. We signed as witnesses in the presence of the Testator and each other. Witness 1: ____________________________ Name: ____________________________ Address: ____________________________ Witness 2: ____________________________ Name: ____________________________ Address: ____________________________ NOTARIZATION State of California [County] of the US On this [Date of Notarization], before me personally appeared [Full Legal Name of Testator], who proved to me on the basis of satisfactory evidence to be the person whose name is subscribed to the within instrument and acknowledged to me that he/she executed the same in his/her authorized capacity, and that by his/her signature on the instrument the person, or the entity upon behalf of which the person acted, executed the instrument. I certify under PENALTY OF PERJURY under the laws of the State of California that the foregoing paragraph is true and correct. WITNESS my hand and official seal. ____________________________ [Notary Name] [Notary Address]" with placeholders for [Execution Date], [Execution City], [Full Legal Name of Testator], [County], [Date of Notarization], [Full Legal Name of Testator], [Notary Name], and [Notary Address]
 
-### Will Creation Process
-- First page of the Will section displays a "Create Will" button
-- New will drafts are only created after the user clicks the "Create Will" button
-- Auto-saving functionality begins only after a will draft has been created via the "Create Will" button
-- No automatic draft creation occurs from field entries before the user explicitly creates a will
-- After clicking "Create Will", guided step-by-step forms collect all necessary information for a California legal will
-- Progressive form completion with validation at each step
-- Users can navigate between completed steps to review and modify information
-- "Review" button in the will creation section that allows users to view their saved data on the "Review Your Will" page at any time, even if the form is not 100% complete
-- Immediate and reliable auto-save functionality that updates draft data instantly when users enter information in any field (only after draft creation)
-- Real-time draft updates that occur seamlessly without user intervention or delays
-- Visual indicators for auto-save status to show users when their data is being saved
+### Guided Form Interface
+- Step-by-step form that maps each template placeholder to corresponding input fields
+- Calendar/date pickers for date entry fields
+- Dropdown menus where appropriate for date selection
+- "Full Legal Name of Testator" is entered once and automatically reused throughout the document
+- Article II is displayed as static text with no input fields or user interaction required
+- Article III includes dynamic beneficiary management with "Add Beneficiary" and "Remove Beneficiary" buttons
+- Each beneficiary entry includes fields for full name, relationship, and percentage
+- Form validates that beneficiary percentages total 100%
+- Article IV includes a checkbox for real property bequests. When checked, provides "Add Real Property Bequest" and "Remove Real Property Bequest" buttons
+- Each real property bequest entry includes fields for address or legal description of property and full name of beneficiary
+- Article IV includes personal property bequest management with "Add Personal Property Bequest" and "Remove Personal Property Bequest" buttons
+- Each personal property bequest entry includes fields for description of property, full name of specific beneficiary, and full name of alternate beneficiary
+- Article V includes fields for Digital Executor and Successor Digital Executor nomination
+- Article V includes "Add Email Account" and "Remove Email Account" buttons for managing multiple email account entries with fields for email account name, email provider dropdown, and should be closed/maintained selection
+- Article V includes "Add Social Account" and "Remove Social Account" buttons for managing multiple social account entries with fields for social account name, social platform dropdown, and should be closed/maintained selection
+- Article V includes "Add Tech Account" and "Remove Tech Account" buttons for managing multiple tech account entries with fields for tech account name, tech platform dropdown, and should be closed/maintained selection
+- Article V includes "Add Crypto Wallet" and "Remove Crypto Wallet" buttons for managing multiple crypto wallet entries with fields for crypto wallet name, wallet type dropdown, and shall be transferred to digital assets beneficiary
+- Article V includes "Add Crypto Exchange" and "Remove Crypto Exchange" buttons for managing multiple crypto exchange entries with fields for crypto exchange name, exchange platform dropdown, and shall be transferred to digital assets beneficiary
+- Article VI includes dropdown selection for [Cremated/Buried], text field for [Buried Location], dropdown selection for [held/not held], text field for [Full Name of Funeral Representative], and text field for [Full Name of Alternative Funeral Representative]
+- Article VII includes text field for [Full Name of Primary Executor], text field for [Full Name of Successor Executor], and checkbox to expressly waive bond requirement with default value "bond" unless waived
+- Article VIII includes a checkbox asking if the user has minor children. If unchecked, the entire GUARDIANSHIP section is skipped. If checked, includes text field for [Full Name of Primary Guardian], text field for [Full Name of Successor Guardian], and checkbox to expressly waive bond requirement with default value "bond" unless waived
+- Article IX is displayed as static text with no input fields or user interaction required
+- Article X includes date picker for [Execution Date], text field for [Execution City], text field for [Full Legal Name of Testator], text field for [County], date picker for [Date of Notarization], text field for [Full Legal Name of Testator], text field for [Notary Name], and text field for [Notary Address], with only the exact template language preserved
+- Mobile-friendly and professional SaaS-style interface
+- Complete data persistence ensures all entered data in the guided form is reliably saved and restored when users navigate back to drafts and re-edit, including all fields and dynamic lists
 
-### Trust Creation Process
-- First page of the Trust section displays a "Create Trust" button
-- New trust drafts are only created after the user clicks the "Create Trust" button
-- Auto-saving functionality begins only after a trust draft has been created via the "Create Trust" button
-- No automatic draft creation occurs from field entries before the user explicitly creates a trust
-- After clicking "Create Trust", guided step-by-step forms collect all necessary information for a California revocable living trust agreement
-- Progressive form completion with validation at each step
-- Users can navigate between completed steps to review and modify information
-- "Review" button in the trust creation section that allows users to view their saved data on the "Review Your Trust" page at any time, even if the form is not 100% complete
-- Trust creation operates independently from will data and does not require existing will information
-- Standalone trust creation workflow that can be accessed directly
-- Immediate and reliable auto-save functionality that updates draft data instantly when users enter information in any field (only after draft creation)
-- Real-time draft updates that occur seamlessly without user intervention or delays
-- Visual indicators for auto-save status to show users when their data is being saved
+### Comprehensive Data Persistence System
+- Frontend serializes all form data including every field, checkbox state, dropdown selection, and dynamic list entry
+- Automatic save triggers on every field change, checkbox toggle, dropdown selection, and dynamic list modification
+- Frontend calls backend saveWillDraft method with complete serialized form data on every autosave and manual save
+- Backend receives and persists the complete draft data structure including all user inputs
+- Backend returns complete draft data when frontend requests existing drafts for editing
+- Data restoration ensures all fields, checkboxes, dropdowns, and dynamic lists are properly populated when editing existing drafts
+- Robust error handling for save operations with user feedback on save status
+- Visual save indicators show users when data is being saved and when saves are complete
+- No data loss occurs when users navigate between pages or close and reopen drafts
 
-### Review Sections
-- Will review section that displays all auto-saved data from the will creation process
-- Trust review section that displays all auto-saved data from the trust creation process
-- Review sections show entered information at any stage of completion, regardless of whether forms are 100% complete
-- Users can preview their entered information even with partially completed forms
-- Auto-saved data is always displayed in review sections, allowing users to see their progress and entered details
-- Review functionality works with incomplete drafts to provide continuous visibility of user input
+### Template Language Display in Edit Will Draft
+- Article X: ATTESTATION section in the "Edit Will Draft" page displays the template language with clean, professional typography using a readable font consistent with the rest of the page
+- Template language section shows only the main attestation, witness, notarization, and notary paragraphs as plain text without signature lines, name lines, or address lines
+- Template language content includes: "I declare that this document is my Last Will and Testament. I sign it knowingly and voluntarily, in the presence of the witnesses below. Executed on [Execution Date], at [Execution City], California. WITNESSES' ATTESTATION We, the undersigned, declare: The Testator signed this Will in our presence. We signed as witnesses in the presence of the Testator and each other. NOTARIZATION State of California [County] of the US On this [Date of Notarization], before me personally appeared [Full Legal Name of Testator], who proved to me on the basis of satisfactory evidence to be the person whose name is subscribed to the within instrument and acknowledged to me that he/she executed the same in his/her authorized capacity, and that by his/her signature on the instrument the person, or the entity upon behalf of which the person acted, executed the instrument. I certify under PENALTY OF PERJURY under the laws of the State of California that the foregoing paragraph is true and correct. WITNESS my hand and official seal. [Notary Name] [Notary Address]"
+- Template language formatting is clear, readable, and legally presentable, matching the professional appearance of the Sample Will
+- Typography uses consistent font size, style, and spacing that aligns with the overall page design
 
 ### Draft Management
-- Users can save their progress as drafts at any point during the will or trust creation process
-- Multiple drafts can be saved and managed per user for both wills and trusts
-- Drafts include all form data and current completion status
-- Users can resume working on saved drafts
-- "My Drafts" section that displays all saved will and trust drafts
-- "Continue Editing" functionality that loads a selected draft back into the appropriate creation form
-- "View" button for each will and trust draft in the "My Drafts" section that opens the draft in read-only review mode with a light blue color styling that stands out visually while maintaining accessibility and consistency with the app's design
-- "Download" button for each draft that allows users to download incomplete and complete drafts as editable Word documents
-- View functionality displays all saved data regardless of completion status, allowing users to see their draft content without editing
-- When viewing a draft, users can see all entered information in a read-only format that shows the current state of their will or trust
-- View mode provides complete visibility of draft content for both incomplete and complete forms
-- When continuing editing, users are taken to the appropriate form with all previously entered data restored
-- Form state is properly restored including current step position and all field values
-- Users can seamlessly continue from where they left off in their draft
-- Reliable auto-save system that immediately captures and stores field changes for both will and trust creation forms (only after drafts are explicitly created)
-- Draft updates happen instantly and reliably as users type or modify any form field
+- Instant draft saving after each field entry with visual save indicators
+- Always-available "Save" button in the top right of the Will Editor that users can click at any time
+- "My Drafts" section where users can view all their saved documents
+- Users can edit and resume any saved draft at any time
+- Each user's drafts are stored separately and privately
+- Draft storage includes all dynamic beneficiary entries for Article III, real property bequest entries for Article IV, personal property bequest entries for Article IV, all digital asset entries for Article V including email accounts, social accounts, tech accounts, crypto wallets, and crypto exchanges, Article VI funeral and burial instruction entries, Article VII executor appointment data including bond waiver checkbox status, Article VIII guardianship appointment data including the minor children checkbox status and bond waiver checkbox status, Article IX static content, and Article X attestation data including notary name and address and notarization data
+- Complete data persistence ensures all entered data in "Edit Will Draft" is saved and restored correctly when users navigate back to drafts and re-edit
+- Reliable data restoration ensures all fields and dynamic lists are properly loaded when editing existing drafts
 
-### Document Generation and Download
-- Generate completed will and trust documents based on user input using custom document generation code
-- Generate sample will and trust documents using fictional persona data for reference purposes
-- Reliable download functionality that creates and delivers valid .docx Word files to the user for both wills and trusts
-- Sample document downloads that include visible "DRAFT" watermark if technically feasible
-- User's entered information is formatted into simple, readable document structures
-- Generated documents follow California legal requirements for wills and revocable living trust agreements
-- Downloaded .docx files are fully compatible with Microsoft Word and other document editors
-- Document generation ensures proper Word document structure and formatting with correct headers, content types, and file structure
-- Files maintain editability after download for future modifications
-- Download process handles proper file naming, MIME types, and browser compatibility
-- Custom document templates are built programmatically without external dependencies
-- Generated Word documents are plain, unlocked, and contain no password protection or encryption
-- Documents open immediately in standard Word processors without requiring any passwords or special access
-- Files are created as standard, unprotected .docx documents that can be freely edited and shared
+### Document Export
+- Rebuilt download functionality that generates fully editable .docx files for both user drafts and sample wills
+- Download buttons that are always visible and functional, reliably generating proper Word (.docx) files with robust document generation library loading
+- Exported documents are section-for-section, word-for-word replicas of the template with all formatting, headings, and structure preserved exactly
+- All user data is properly filled into the template placeholders
+- Professional legal document styling applied throughout the entire exported .docx file using Times New Roman font family
+- Consistent font sizes with 12pt for body text and 14pt for article headings
+- Justified text alignment for all paragraphs to create professional legal document appearance
+- Proper paragraph spacing with appropriate line heights for readability
+- Bold formatting applied to all article titles and section headings for clear document hierarchy
+- Article X: ATTESTATION section formatted with professional legal styling including proper spacing for signature blocks, witness attestation section, notarization section, and notary section
+- Signature lines formatted with sufficient space (minimum 3 lines) for handwritten signatures
+- Witness attestation section formatted with clear signature blocks and adequate space for witness names and addresses
+- Notarization section formatted with proper spacing for county, date of notarization, and testator name placement
+- Notary section formatted with proper spacing for notary name and address placement, appearing as: ____________________________ [Notary Name] [Notary Address]
+- Print-ready formatting that maintains professional legal document standards when printed
+- Clear DRAFT watermark is applied to exported documents
+- Enhanced error handling for document generation with accurate error messages that reflect the true cause of any failures
+- Reliable document generation that consistently produces downloadable .docx files with loading states and success indicators
+- All date fields in Will Draft exports are formatted in full text style (e.g., "June 12, 2010") instead of numeric format (e.g., "2010-06-12") to match the Sample Will formatting
+- Date formatting is applied consistently throughout the Will Draft, both in the on-screen preview and in the generated .docx file
+- Article I: DECLARATION appears with exact structure, sentences, line breaks, and all specified placeholders properly filled with dates formatted in full text style
+- Article II: DEBTS AND EXPENSES appears with exact static content word-for-word as specified in template
+- Article III: RESIDUARY ESTATE appears with exact content word-for-word as specified in template with all beneficiary entries properly filled in the correct template format and order, using "the California default 120 hours (5 days)" instead of "30 days"
+- Article IV: SPECIFIC BEQUESTS appears with all real property bequest entries properly filled using the exact template sentence format and all personal property bequest entries properly filled using the exact template format
+- Article V: DIGITAL ASSETS appears with exact template content word-for-word beginning with Digital Executor and Successor Digital Executor nomination, followed by the two specific legal paragraphs: First paragraph: "Digital Assets" include, without limitation, emails, social media, cloud, server, domain names, electronic files, and cryptocurrencies, regardless of their storage medium or location. I direct that the following Digital Assets to be handled as follows:" Second paragraph: "The Digital Executor is authorized to access, manage, control, transfer, or close Digital Assets to the extent permitted by law and provider terms. The Executor may request usernames, passwords, and decryption keys and may seek court orders, if necessary, under the Revised Uniform Fiduciary Access to Digital Assets Act (Cal. Prob. Code §§870–884). This grant does not require the Executor to violate applicable Terms of Service or criminal law; where access requires additional legal process, the Digital Executor may seek court authority. For cryptocurrency or private keys, the Testator expressly authorizes transfer of private keys and cryptocurrency to the Digital Executor." Then all digital asset entries properly filled including email accounts with "should be" before closed/maintained options, social accounts with "should be" before closed/maintained options, tech accounts with "should be" before closed/maintained options, crypto wallets with "shall be transferred to" before beneficiary names, and crypto exchanges with "shall be transferred to" before beneficiary names, and includes the exact sentence "DIGITAL ASSETS TO BE TRANSFERRED TO A SPECIFIC BENEFICIARY:" for the digital assets transfer section
+- Article VI: FUNERAL AND BURIAL INSTRUCTIONS appears with exact template content word-for-word with all placeholders properly filled from user input
+- Article VII: EXECUTOR appears with exact template content word-for-word with three paragraphs: First paragraph with placeholders [Full Name of Primary Executor] and [Full Name of Successor Executor] properly filled, second paragraph with exact static text about executor powers, and third paragraph with [bond] placeholder showing "bond" unless expressly waived by testator
+- Article VIII: GUARDIANSHIP appears with exact template content word-for-word with all placeholders [Full Name of Primary Guardian], [Full Name of Successor Guardian], and [bond] properly filled from user input showing "bond" unless expressly waived by testator, or is completely omitted from the document if the user indicated they have no minor children
+- Article IX: MISCELLANEOUS PROVISIONS appears with exact template content word-for-word as specified
+- Article X: ATTESTATION appears with exact template content word-for-word: "I declare that this document is my Last Will and Testament. I sign it knowingly and voluntarily, in the presence of the witnesses below. Executed on [Execution Date], at [Execution City], California. Signature of Testator: ____________________________ Printed Name of Testator: [Full Legal Name of Testator] WITNESSES' ATTESTATION We, the undersigned, declare: The Testator signed this Will in our presence. We signed as witnesses in the presence of the Testator and each other. Witness 1: ____________________________ Name: ____________________________ Address: ____________________________ Witness 2: ____________________________ Name: ____________________________ Address: ____________________________ NOTARIZATION State of California [County] of the US On this [Date of Notarization], before me personally appeared [Full Legal Name of Testator], who proved to me on the basis of satisfactory evidence to be the person whose name is subscribed to the within instrument and acknowledged to me that he/she executed the same in his/her authorized capacity, and that by his/her signature on the instrument the person, or the entity upon behalf of which the person acted, executed the instrument. I certify under PENALTY OF PERJURY under the laws of the State of California that the foregoing paragraph is true and correct. WITNESS my hand and official seal. ____________________________ [Notary Name] [Notary Address]" with placeholders [Execution Date], [Execution City], [Full Legal Name of Testator], [County], [Date of Notarization], [Full Legal Name of Testator], [Notary Name], and [Notary Address] properly filled from user input with dates formatted in full text style
 
-### Completion Workflow
-- "Complete Will" button that finalizes the will creation process and redirects users back to the "My Drafts" section
-- "Complete Trust" button that finalizes the trust creation process and redirects users back to the "My Drafts" section
-- Proper navigation flow that ensures users are returned to their drafts overview after completing either document type
-- Completion actions that properly save final document state before redirecting
-- Visual indicators for completion status to show users when documents are finalized
+### Sample Content
+- Includes a sample completed will draft using a fictional persona for demonstration purposes
+- "Randomize" button in sample will view that generates new sample wills using different fictional personas
+- Randomization includes various marital statuses and updates all template placeholders accordingly
+- Each randomized sample provides a complete example with different demographic scenarios including varying numbers of beneficiaries, real property bequests, personal property bequests, digital asset entries including email accounts, social accounts, tech accounts, crypto wallets, and crypto exchanges, funeral and burial instruction preferences, executor appointment data with bond waiver scenarios, guardianship appointment data including random minor children status and bond waiver scenarios, Article IX static content, and Article X attestation data including notary name and address and notarization data
+- Rebuilt "Download DOCX" button on Sample Will page that is always visible and functional, reliably generating and downloading the currently displayed sample will as a fully editable Word (.docx) document with robust library loading
+- Sample will .docx export preserves all formatting, article titles, section order, fonts, spacing, and document structure matching the legal template precisely
+- Downloaded sample documents contain all current persona data properly filled into template placeholders
+- Enhanced sample will document generation with comprehensive error handling and accurate error messages that reflect the true cause of any failures
+- Sample Will DOCX export uses professional legal formatting throughout with Times New Roman font family consistently applied
+- Sample Will DOCX export includes consistent font sizes with 12pt for body text and 14pt for article headings
+- Sample Will DOCX export applies justified text alignment to all paragraphs for professional legal document appearance
+- Sample Will DOCX export includes proper paragraph spacing with appropriate line heights for optimal readability
+- Sample Will DOCX export applies bold formatting to all article titles and section headings for clear document hierarchy
+- Sample Will DOCX export formats Article X: ATTESTATION section with professional legal styling including proper spacing for signature blocks, witness attestation section, notarization section, and notary section
+- Sample Will DOCX export formats signature lines with sufficient space (minimum 3 lines) for handwritten signatures
+- Sample Will DOCX export formats witness attestation section with clear signature blocks and adequate space for witness names and addresses
+- Sample Will DOCX export formats notarization section with proper spacing for county, date of notarization, and testator name placement
+- Sample Will DOCX export formats notary section with proper spacing for notary name and address placement, appearing as: ____________________________ [Notary Name] [Notary Address]
+- Sample Will DOCX export maintains print-ready formatting that meets professional legal document standards
+- Sample Will preview and .docx export reflect exact Article I: DECLARATION structure beginning with the specified opening paragraph, with the testator's name placeholder replaced by current persona's data, followed by all other placeholders filled with persona information, maintaining word-for-word accuracy
+- Sample Will preview and .docx export include Article II: DEBTS AND EXPENSES with exact static template content word-for-word
+- Sample Will preview and .docx export include Article III: RESIDUARY ESTATE with exact template content word-for-word and all beneficiary placeholders filled with persona data in correct template format, using "the California default 120 hours (5 days)" instead of "30 days"
+- Sample Will preview and .docx export include Article IV: SPECIFIC BEQUESTS with real property bequest entries using exact template sentence format and personal property bequest entries using exact template format with persona data
+- Sample Will preview and .docx export include Article V: DIGITAL ASSETS with exact template content word-for-word beginning with Digital Executor and Successor Digital Executor nomination, followed by the two specific legal paragraphs: First paragraph: "Digital Assets" include, without limitation, emails, social media, cloud, server, domain names, electronic files, and cryptocurrencies, regardless of their storage medium or location. I direct that the following Digital Assets to be handled as follows:" Second paragraph: "The Digital Executor is authorized to access, manage, control, transfer, or close Digital Assets to the extent permitted by law and provider terms. The Executor may request usernames, passwords, and decryption keys and may seek court orders, if necessary, under the Revised Uniform Fiduciary Access to Digital Assets Act (Cal. Prob. Code §§870–884). This grant does not require the Executor to violate applicable Terms of Service or criminal law; where access requires additional legal process, the Digital Executor may seek court authority. For cryptocurrency or private keys, the Testator expressly authorizes transfer of private keys and cryptocurrency to the Digital Executor." Then all digital asset placeholders filled with persona data including email accounts with "should be" before closed/maintained options, social accounts with "should be" before closed/maintained options, tech accounts with "should be" before closed/maintained options, crypto wallets with "shall be transferred to" before beneficiary names, and crypto exchanges with "shall be transferred to" before beneficiary names, and includes the exact sentence "DIGITAL ASSETS TO BE TRANSFERRED TO A SPECIFIC BENEFICIARY:" for the digital assets transfer section
+- Sample Will preview and .docx export include Article VI: FUNERAL AND BURIAL INSTRUCTIONS with exact template content word-for-word and all placeholders filled with persona data
+- Sample Will preview and .docx export include Article VII: EXECUTOR with exact template content word-for-word with three paragraphs: First paragraph with placeholders filled with persona data, second paragraph with exact static text about executor powers, and third paragraph with [bond] placeholder showing "bond" unless expressly waived in persona data
+- Sample Will preview and .docx export include Article VIII: GUARDIANSHIP with exact template content word-for-word and all placeholders [Full Name of Primary Guardian], [Full Name of Successor Guardian], and [bond] filled with persona data showing "bond" unless expressly waived in persona data, or completely omit this article if the persona has no minor children
+- Sample Will preview and .docx export include Article IX: MISCELLANEOUS PROVISIONS with exact template content word-for-word as specified
+- Sample Will preview and .docx export include Article X: ATTESTATION with exact template content word-for-word: "I declare that this document is my Last Will and Testament. I sign it knowingly and voluntarily, in the presence of the witnesses below. Executed on [Execution Date], at [Execution City], California. Signature of Testator: ____________________________ Printed Name of Testator: [Full Legal Name of Testator] WITNESSES' ATTESTATION We, the undersigned, declare: The Testator signed this Will in our presence. We signed as witnesses in the presence of the Testator and each other. Witness 1: ____________________________ Name: ____________________________ Address: ____________________________ Witness 2: ____________________________ Name: ____________________________ Address: ____________________________ NOTARIZATION State of California [County] of the US On this [Date of Notarization], before me personally appeared [Full Legal Name of Testator], who proved to me on the basis of satisfactory evidence to be the person whose name is subscribed to the within instrument and acknowledged to me that he/she executed the same in his/her authorized capacity, and that by his/her signature on the instrument the person, or the entity upon behalf of which the person acted, executed the instrument. I certify under PENALTY OF PERJURY under the laws of the State of California that the foregoing paragraph is true and correct. WITNESS my hand and official seal. ____________________________ [Notary Name] [Notary Address]" with placeholders [Execution Date], [Execution City], [Full Legal Name of Testator], [County], [Date of Notarization], [Full Legal Name of Testator], [Notary Name], and [Notary Address] filled with persona data
 
-## Project Configuration
-- Project is configured with proper dfx.json file that defines backend canisters and frontend deployment settings
-- Configuration includes all necessary canister definitions for the application's backend services
-- Frontend deployment configuration is properly set up for the React-based user interface
-- Project structure supports proper build and deployment processes for the Internet Computer platform
-- Configuration ensures proper canister communication and frontend-backend integration
-
-## Deployment Documentation
-- Comprehensive deployment instructions documentation file that explains how to deploy, run, and test the Will Wisher application
-- Step-by-step guide for local development setup using dfx commands and tools
-- Instructions for frontend build process including npm/yarn commands and build configuration
-- Production deployment guide with detailed steps for deploying to the Internet Computer mainnet
-- Local testing procedures and commands for verifying application functionality during development
-- Environment setup requirements including Node.js, dfx installation, and other dependencies
-- Troubleshooting section with common deployment issues and their solutions
-- Configuration details for different deployment environments (local, testnet, mainnet)
-- Instructions for managing canister cycles and deployment costs
-- Guide for updating and redeploying the application with new changes
+### Professional Legal Document Styling
+- Professional legal document styling applied to the "LAST WILL AND TESTAMENT" web page with consistent fonts, spacing, and formatting throughout for a polished, print-ready appearance
+- Consistent professional typography throughout the entire will document preview using clean, readable fonts appropriate for legal documents
+- Uniform heading sizes, paragraph spacing, and line heights across all sections
+- All article titles styled consistently with proper hierarchy and visual weight
+- Body text, signature lines, and placeholders visually aligned and professionally formatted
+- Article X: ATTESTATION section styled to match the formatting and appearance of all other articles
+- Cohesive visual presentation using professional styling for a polished, legal-quality appearance
+- Professional font type, size, and style applied uniformly to create a document that appears legally authoritative and visually consistent
+- Print-ready formatting that maintains professional appearance when viewed on screen or printed
 
 ## Backend Data Storage
-- User profiles and authentication state
-- User roles and permissions for admin management
-- Will drafts containing form data and completion status
-- Trust drafts containing form data and completion status
-- Sample will and trust data using fictional persona information
-- Legal content requirements and formatting specifications for both wills and trusts
-- All user data is stored securely with proper encryption and access controls
+- User will drafts with all form responses stored per user including dynamic beneficiary lists, real property bequest entries, personal property bequest entries, all digital asset entries including email accounts, social accounts, tech accounts, crypto wallets, and crypto exchanges, Article VI funeral and burial instruction data, Article VII executor appointment data including bond waiver checkbox status, Article VIII guardianship appointment data including minor children checkbox status and bond waiver checkbox status, Article IX static content, and Article X attestation data including notary name and address and notarization data
+- Complete serialized form data structure that captures every field value, checkbox state, dropdown selection, and dynamic list entry
+- Comprehensive data persistence system that stores all user inputs without data loss
+- Template structure and placeholder mappings including exact Article I: DECLARATION format beginning with the specified opening paragraph and all other specified placeholders
+- Template structure includes exact Article II: DEBTS AND EXPENSES static content
+- Template structure includes exact Article III: RESIDUARY ESTATE content with support for variable numbers of beneficiaries, using "the California default 120 hours (5 days)" instead of "30 days"
+- Template structure includes exact Article IV: SPECIFIC BEQUESTS content with support for variable numbers of real property bequests and personal property bequests
+- Template structure includes exact Article V: DIGITAL ASSETS content with support for Digital Executor and Successor Digital Executor nomination, the two specific legal paragraphs: First paragraph: "Digital Assets" include, without limitation, emails, social media, cloud, server, domain names, electronic files, and cryptocurrencies, regardless of their storage medium or location. I direct that the following Digital Assets to be handled as follows:" Second paragraph: "The Digital Executor is authorized to access, manage, control, transfer, or close Digital Assets to the extent permitted by law and provider terms. The Executor may request usernames, passwords, and decryption keys and may seek court orders, if necessary, under the Revised Uniform Fiduciary Access to Digital Assets Act (Cal. Prob. Code §§870–884). This grant does not require the Executor to violate applicable Terms of Service or criminal law; where access requires additional legal process, the Digital Executor may seek court authority. For cryptocurrency or private keys, the Testator expressly authorizes transfer of private keys and cryptocurrency to the Digital Executor." And variable numbers of email accounts with "should be" before closed/maintained options, social accounts with "should be" before closed/maintained options, tech accounts with "should be" before closed/maintained options, crypto wallets with "shall be transferred to" before beneficiary names, and crypto exchanges with "shall be transferred to" before beneficiary names, including the exact sentence "DIGITAL ASSETS TO BE TRANSFERRED TO A SPECIFIC BENEFICIARY:" for the digital assets transfer section
+- Template structure includes exact Article VI: FUNERAL AND BURIAL INSTRUCTIONS content with all specified placeholders
+- Template structure includes exact Article VII: EXECUTOR content with three paragraphs: First paragraph with placeholders [Full Name of Primary Executor] and [Full Name of Successor Executor], second paragraph with exact static text about executor powers, and third paragraph with [bond] placeholder defaulting to "bond" unless expressly waived
+- Template structure includes exact Article VIII: GUARDIANSHIP content with placeholders [Full Name of Primary Guardian], [Full Name of Successor Guardian], and [bond] defaulting to "bond" unless expressly waived, with logic to completely omit this article if user has no minor children
+- Template structure includes exact Article IX: MISCELLANEOUS PROVISIONS static content
+- Template structure includes exact Article X: ATTESTATION content: "I declare that this document is my Last Will and Testament. I sign it knowingly and voluntarily, in the presence of the witnesses below. Executed on [Execution Date], at [Execution City], California. Signature of Testator: ____________________________ Printed Name of Testator: [Full Legal Name of Testator] WITNESSES' ATTESTATION We, the undersigned, declare: The Testator signed this Will in our presence. We signed as witnesses in the presence of the Testator and each other. Witness 1: ____________________________ Name: ____________________________ Address: ____________________________ Witness 2: ____________________________ Name: ____________________________ Address: ____________________________ NOTARIZATION State of California [County] of the US On this [Date of Notarization], before me personally appeared [Full Legal Name of Testator], who proved to me on the basis of satisfactory evidence to be the person whose name is subscribed to the within instrument and acknowledged to me that he/she executed the same in his/her authorized capacity, and that by his/her signature on the instrument the person, or the entity upon behalf of which the person acted, executed the instrument. I certify under PENALTY OF PERJURY under the laws of the State of California that the foregoing paragraph is true and correct. WITNESS my hand and official seal. ____________________________ [Notary Name] [Notary Address]" with placeholders [Execution Date], [Execution City], [Full Legal Name of Testator], [County], [Date of Notarization], [Full Legal Name of Testator], [Notary Name], and [Notary Address]
+- User authentication data through Internet Identity integration
+- Draft save timestamps and status tracking
+- Sample persona data for randomization feature including varying beneficiary scenarios, real property bequest scenarios, personal property bequest scenarios, digital asset scenarios with email accounts, social accounts, tech accounts, crypto wallets, and crypto exchanges, funeral and burial instruction preferences, executor appointment scenarios with bond waiver options, guardianship appointment scenarios including random minor children status and bond waiver options, Article IX static content, and Article X attestation data including notary name and address and notarization data
+- Complete data persistence system that ensures all user input data is properly saved and restored when editing drafts
+- Reliable data storage and retrieval system that maintains all fields and dynamic lists when users edit existing drafts
 
 ## Backend Operations
-- Create new will drafts only when explicitly requested via "Create Will" button
-- Create new trust drafts only when explicitly requested via "Create Trust" button
-- Create, read, update, and delete will and trust drafts for authenticated users
-- Retrieve sample will and trust data for reference display and document generation
-- Retrieve specific draft data for loading into the appropriate creation form
-- Retrieve specific draft data for display in read-only view mode regardless of completion status
-- Retrieve auto-saved draft data for display in review sections regardless of completion status
-- Handle immediate and reliable auto-save operations triggered by any field changes in both will and trust creation forms (only after drafts are created)
-- Process real-time draft save requests with high reliability and immediate response
-- Generate properly formatted will and trust documents from user data using custom document creation logic
-- Generate sample will and trust documents from fictional persona data with "DRAFT" watermark if possible
-- Create valid .docx files with correct Word document structure, formatting, and file headers using internal code for both wills and trusts
-- Build documents programmatically with user-specific information in simple, readable formats
-- Ensure generated documents maintain full compatibility with Microsoft Word and other document editors
-- Generate plain, unprotected Word documents without any password protection, encryption, or access restrictions
-- Create standard .docx files that open immediately in any compatible word processor without authentication requirements
-- Handle reliable document generation with proper MIME types, content disposition headers, and binary file handling
-- Manage completion workflow operations that finalize documents and handle proper navigation flow
-- Manage user sessions and authentication state
-- Handle Internet Identity authentication flow and user verification
-- Automatically approve all new user registrations without manual intervention
-- Manage user access and permissions with admin controls for viewing and managing user roles
-- Provide admin functionality to view all users and manage their roles and permissions
-- Secure data storage and retrieval operations with proper access controls and encryption
+- Robust saveWillDraft method that receives complete serialized form data from frontend and persists all user inputs including every field value, checkbox state, dropdown selection, and dynamic list entry
+- Comprehensive data retrieval operations that return complete draft data structure to frontend for editing
+- Save and retrieve user draft data including all dynamic beneficiary entries, real property bequest entries, personal property bequest entries, all digital asset entries including email accounts, social accounts, tech accounts, crypto wallets, and crypto exchanges, Article VI funeral and burial instruction data, Article VII executor appointment data including bond waiver checkbox status, Article VIII guardianship appointment data including minor children checkbox status and bond waiver checkbox status, Article IX static content, and Article X attestation data including notary name and address and notarization data
+- Rebuilt document generation system that reliably generates and serves proper .docx export files for user drafts with professional legal document formatting throughout
+- Professional legal document styling applied to all exported .docx files using Times New Roman font family consistently
+- Font sizing with 12pt for body text and 14pt for article headings in exported documents
+- Justified text alignment applied to all paragraphs in exported .docx files for professional legal appearance
+- Proper paragraph spacing and line heights applied throughout exported documents for optimal readability
+- Bold formatting applied to all article titles and section headings in exported .docx files for clear document hierarchy
+- Article X: ATTESTATION section formatted with professional legal styling including proper spacing for signature blocks, witness attestation section, notarization section, and notary section in exported documents
+- Signature lines formatted with sufficient space (minimum 3 lines) for handwritten signatures in exported .docx files
+- Witness attestation section formatted with clear signature blocks and adequate space for witness names and addresses in exported documents
+- Notarization section formatted with proper spacing for county, date of notarization, and testator name placement in exported .docx files
+- Notary section formatted with proper spacing for notary name and address placement in exported .docx files, appearing as: ____________________________ [Notary Name] [Notary Address]
+- Print-ready formatting maintained in all exported documents that meets professional legal document standards
+- Enhanced error handling for document generation with accurate error messages that reflect the true cause of any failures
+- Generate and serve proper .docx export files for user drafts with all date fields formatted in full text style (e.g., "June 12, 2010") instead of numeric format (e.g., "2010-06-12") to match Sample Will formatting
+- Generate and serve proper .docx export files for user drafts with Article I: DECLARATION structure matching exact template specifications beginning with the specified opening paragraph with dates formatted in full text style
+- Generate and serve proper .docx export files for user drafts with Article II: DEBTS AND EXPENSES matching exact static template content
+- Generate and serve proper .docx export files for user drafts with Article III: RESIDUARY ESTATE matching exact template content with all user-entered beneficiaries properly formatted, using "the California default 120 hours (5 days)" instead of "30 days"
+- Generate and serve proper .docx export files for user drafts with Article IV: SPECIFIC BEQUESTS matching exact template content with all user-entered real property bequests and personal property bequests properly formatted
+- Generate and serve proper .docx export files for user drafts with Article V: DIGITAL ASSETS matching exact template content with Digital Executor and Successor Digital Executor nomination, the two specific legal paragraphs: First paragraph: "Digital Assets" include, without limitation, emails, social media, cloud, server, domain names, electronic files, and cryptocurrencies, regardless of their storage medium or location. I direct that the following Digital Assets to be handled as follows:" Second paragraph: "The Digital Executor is authorized to access, manage, control, transfer, or close Digital Assets to the extent permitted by law and provider terms. The Executor may request usernames, passwords, and decryption keys and may seek court orders, if necessary, under the Revised Uniform Fiduciary Access to Digital Assets Act (Cal. Prob. Code §§870–884). This grant does not require the Executor to violate applicable Terms of Service or criminal law; where access requires additional legal process, the Digital Executor may seek court authority. For cryptocurrency or private keys, the Testator expressly authorizes transfer of private keys and cryptocurrency to the Digital Executor." And all user-entered digital asset data properly formatted including email accounts with "should be" before closed/maintained options, social accounts with "should be" before closed/maintained options, tech accounts with "should be" before closed/maintained options, crypto wallets with "shall be transferred to" before beneficiary names, and crypto exchanges with "shall be transferred to" before beneficiary names, and includes the exact sentence "DIGITAL ASSETS TO BE TRANSFERRED TO A SPECIFIC BENEFICIARY:" for the digital assets transfer section
+- Generate and serve proper .docx export files for user drafts with Article VI: FUNERAL AND BURIAL INSTRUCTIONS matching exact template content with all user-entered funeral and burial instruction data properly formatted
+- Generate and serve proper .docx export files for user drafts with Article VII: EXECUTOR matching exact template content with three paragraphs: First paragraph with user-entered executor names properly filled, second paragraph with exact static text about executor powers, and third paragraph with bond requirement showing "bond" unless expressly waived by user
+- Generate and serve proper .docx export files for user drafts with Article VIII: GUARDIANSHIP matching exact template content with all user-entered guardianship data properly formatted including [Full Name of Primary Guardian], [Full Name of Successor Guardian], and bond requirement showing "bond" unless expressly waived by user, or completely omit this article if user indicated they have no minor children
+- Generate and serve proper .docx export files for user drafts with Article IX: MISCELLANEOUS PROVISIONS matching exact template content
+- Generate and serve proper .docx export files for user drafts with Article X: ATTESTATION matching exact template content: "I declare that this document is my Last Will and Testament. I sign it knowingly and voluntarily, in the presence of the witnesses below. Executed on [Execution Date], at [Execution City], California. Signature of Testator: ____________________________ Printed Name of Testator: [Full Legal Name of Testator] WITNESSES' ATTESTATION We, the undersigned, declare: The Testator signed this Will in our presence. We signed as witnesses in the presence of the Testator and each other. Witness 1: ____________________________ Name: ____________________________ Address: ____________________________ Witness 2: ____________________________ Name: ____________________________ Address: ____________________________ NOTARIZATION State of California [County] of the US On this [Date of Notarization], before me personally appeared [Full Legal Name of Testator], who proved to me on the basis of satisfactory evidence to be the person whose name is subscribed to the within instrument and acknowledged to me that he/she executed the same in his/her authorized capacity, and that by his/her signature on the instrument the person, or the entity upon behalf of which the person acted, executed the instrument. I certify under PENALTY OF PERJURY under the laws of the State of California that the foregoing paragraph is true and correct. WITNESS my hand and official seal. ____________________________ [Notary Name] [Notary Address]" with placeholders [Execution Date], [Execution City], [Full Legal Name of Testator], [County], [Date of Notarization], [Full Legal Name of Testator], [Notary Name], and [Notary Address] properly filled from user input with dates formatted in full text style
+- Rebuilt sample will document generation system that reliably generates and serves proper .docx export files for sample wills with professional legal document formatting throughout using Times New Roman font family consistently
+- Sample will .docx export includes consistent font sizes with 12pt for body text and 14pt for article headings
+- Sample will .docx export applies justified text alignment to all paragraphs for professional legal document appearance
+- Sample will .docx export includes proper paragraph spacing with appropriate line heights for optimal readability
+- Sample will .docx export applies bold formatting to all article titles and section headings for clear document hierarchy
+- Sample will .docx export formats Article X: ATTESTATION section with professional legal styling including proper spacing for signature blocks, witness attestation section, notarization section, and notary section
+- Sample will .docx export formats signature lines with sufficient space (minimum 3 lines) for handwritten signatures
+- Sample will .docx export formats witness attestation section with clear signature blocks and adequate space for witness names and addresses
+- Sample will .docx export formats notarization section with proper spacing for county, date of notarization, and testator name placement
+- Sample will .docx export formats notary section with proper spacing for notary name and address placement, appearing as: ____________________________ [Notary Name] [Notary Address]
+- Sample will .docx export maintains print-ready formatting that meets professional legal document standards
+- Enhanced sample will document generation with comprehensive error handling and accurate error messages that reflect the true cause of any failures
+- Generate and serve proper .docx export files for sample wills with current persona data and precise Article I: DECLARATION formatting beginning with the opening paragraph and all placeholders filled
+- Generate and serve proper .docx export files for sample wills with exact Article II: DEBTS AND EXPENSES static content
+- Generate and serve proper .docx export files for sample wills with exact Article III: RESIDUARY ESTATE content and all beneficiary placeholders filled with persona data, using "the California default 120 hours (5 days)" instead of "30 days"
+- Generate and serve proper .docx export files for sample wills with exact Article IV: SPECIFIC BEQUESTS content and all real property bequest and personal property bequest placeholders filled with persona data
+- Generate and serve proper .docx export files for sample wills with exact Article V: DIGITAL ASSETS content with Digital Executor and Successor Digital Executor nomination, the two specific legal paragraphs: First paragraph: "Digital Assets" include, without limitation, emails, social media, cloud, server, domain names, electronic files, and cryptocurrencies, regardless of their storage medium or location. I direct that the following Digital Assets to be handled as follows:" Second paragraph: "The Digital Executor is authorized to access, manage, control, transfer, or close Digital Assets to the extent permitted by law and provider terms. The Executor may request usernames, passwords, and decryption keys and may seek court orders, if necessary, under the Revised Uniform Fiduciary Access to Digital Assets Act (Cal. Prob. Code §§870–884). This grant does not require the Executor to violate applicable Terms of Service or criminal law; where access requires additional legal process, the Digital Executor may seek court authority. For cryptocurrency or private keys, the Testator expressly authorizes transfer of private keys and cryptocurrency to the Digital Executor." And all digital asset placeholders filled with persona data including email accounts with "should be" before closed/maintained options, social accounts with "should be" before closed/maintained options, tech accounts with "should be" before closed/maintained options, crypto wallets with "shall be transferred to" before beneficiary names, and crypto exchanges with "shall be transferred to" before beneficiary names, and includes the exact sentence "DIGITAL ASSETS TO BE TRANSFERRED TO A SPECIFIC BENEFICIARY:" for the digital assets transfer section
+- Generate and serve proper .docx export files for sample wills with exact Article VI: FUNERAL AND BURIAL INSTRUCTIONS content and all placeholders filled with persona data
+- Generate and serve proper .docx export files for sample wills with exact Article VII: EXECUTOR content with three paragraphs: First paragraph with persona executor names properly filled, second paragraph with exact static text about executor powers, and third paragraph with bond requirement showing "bond" unless expressly waived in persona data
+- Generate and serve proper .docx export files for sample wills with exact Article VIII: GUARDIANSHIP content and all placeholders [Full Name of Primary Guardian], [Full Name of Successor Guardian], and bond requirement showing "bond" unless expressly waived in persona data filled with persona data, or completely omit this article if persona has no minor children
+- Generate and serve proper .docx export files for sample wills with exact Article IX: MISCELLANEOUS PROVISIONS content
+- Generate and serve proper .docx export files for sample wills with exact Article X: ATTESTATION content: "I declare that this document is my Last Will and Testament. I sign it knowingly and voluntarily, in the presence of the witnesses below. Executed on [Execution Date], at [Execution City], California. Signature of Testator: ____________________________ Printed Name of Testator: [Full Legal Name of Testator] WITNESSES' ATTESTATION We, the undersigned, declare: The Testator signed this Will in our presence. We signed as witnesses in the presence of the Testator and each other. Witness 1: ____________________________ Name: ____________________________ Address: ____________________________ Witness 2: ____________________________ Name: ____________________________ Address: ____________________________ NOTARIZATION State of California [County] of the US On this [Date of Notarization], before me personally appeared [Full Legal Name of Testator], who proved to me on the basis of satisfactory evidence to be the person whose name is subscribed to the within instrument and acknowledged to me that he/she executed the same in his/her authorized capacity, and that by his/her signature on the instrument the person, or the entity upon behalf of which the person acted, executed the instrument. I certify under PENALTY OF PERJURY under the laws of the State of California that the foregoing paragraph is true and correct. WITNESS my hand and official seal. ____________________________ [Notary Name] [Notary Address]" with placeholders [Execution Date], [Execution City], [Full Legal Name of Testator], [County], [Date of Notarization], [Full Legal Name of Testator], [Notary Name], and [Notary Address] filled with persona data
+- Manage user sessions and authentication
+- Provide template structure and sample data
+- Generate randomized sample persona data for demonstration purposes including variable beneficiary counts, real property bequest scenarios, personal property bequest scenarios, digital asset scenarios with email accounts, social accounts, tech accounts, crypto wallets, and crypto exchanges, funeral and burial instruction preferences, executor appointment scenarios with bond waiver options, guardianship appointment scenarios including random minor children status and bond waiver options, Article IX static content, and Article X attestation data including notary name and address and notarization data
+- Robust data persistence operations that ensure all user input data is properly saved and restored when editing drafts
+- Reliable backend operations that maintain data integrity for all fields and dynamic lists when users edit existing drafts
+- Complete frontend-backend integration that ensures no data loss occurs during save and restore operations
+
+## User Interface
+- Clean, professional homepage with SaaS-style design
+- Mobile-friendly responsive design
+- No admin panel required
+- English language content throughout
+- Enhanced user feedback for document download operations including loading states, progress indicators, success messages, and accurate error messages that reflect the true cause of any failures
+- Always visible and functional download buttons for both Sample Will and Will Draft features
