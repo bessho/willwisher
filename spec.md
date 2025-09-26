@@ -3,6 +3,22 @@
 ## Overview
 Will Wisher is a web application that allows authenticated users to create, edit, and save California wills using a specific legal template. The application provides a guided form interface for completing will documents and enables users to export their completed wills as Word documents.
 
+## Landing Page
+- Responsive landing page built with TailwindCSS featuring modern, clean, trustworthy blue/green/white color palette
+- Hero Section: Full-width, full-height rotating carousel that auto-rotates every 5 seconds using these external image URLs in order:
+  1. https://unsplash.com/photos/man-wearing-headphones-works-on-laptop-at-desk-qOHFI6Nb4Uk
+  2. https://unsplash.com/photos/a-family-with-two-little-daughters-everyone-is-using-mobile-phone-in-the-living-room-G2ue6S3tg3c
+  3. https://www.pexels.com/photo/cheerful-ethnic-photographer-using-laptop-at-home-6347974/
+  4. https://www.pexels.com/photo/photo-of-woman-tutoring-young-boy-4145354/
+  5. https://www.pexels.com/photo/photo-of-woman-smiling-while-sitting-by-the-table-with-her-child-4458414/
+- Hero Section overlay text includes headline "Your Will, Secured Forever on the Blockchain", sub-headline "Simple. Affordable. Tamper-Proof.", primary button "Create My Will Now – $99", and secondary button "See How It Works"
+- Trust Badge Row: Three trust badges with icons and text for "Legally Valid", "Blockchain Verified", and "One-Time Fee"
+- Features Section: Five feature cards with inline SVG icons and descriptions for Guided Will Drafting, Blockchain Storage & Verification, Legal Compliance Checker, Secure Authentication, and User Support using modern bold sans-serif typography and rounded cards
+- Pricing Section: Emphasizes one-time $99 pricing with unlimited edits and optional $20 storage add-on
+- Closing CTA Section: "Protect Your Legacy. Start Today." with strong call-to-action button
+- Full mobile and desktop responsiveness with rounded buttons throughout
+- Modern typography and clean design elements
+
 ## Authentication
 - Uses Internet Identity for user authentication
 - All features require user authentication
@@ -237,8 +253,8 @@ Will Wisher is a web application that allows authenticated users to create, edit
 - Complete frontend-backend integration that ensures no data loss occurs during save and restore operations
 
 ## User Interface
-- Clean, professional homepage with SaaS-style design
-- Mobile-friendly responsive design
+- Responsive landing page with modern TailwindCSS design featuring blue/green/white color palette
+- Mobile-friendly responsive design throughout application
 - No admin panel required
 - English language content throughout
 - Enhanced user feedback for document download operations including loading states, progress indicators, success messages, and accurate error messages that reflect the true cause of any failures

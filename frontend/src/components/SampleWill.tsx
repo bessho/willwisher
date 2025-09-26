@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FileText, User, MapPin, Calendar, Shuffle, Download } from 'lucide-react';
 import LoadingSpinner from './LoadingSpinner';
 
@@ -803,7 +803,7 @@ export default function SampleWill() {
     const { Document, Paragraph, TextRun, HeadingLevel, AlignmentType } = docx;
 
     try {
-      const paragraphs = [];
+      const paragraphs: any[] = [];
 
       // Title section with ENHANCED professional legal formatting - Times New Roman throughout
       paragraphs.push(

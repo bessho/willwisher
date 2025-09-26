@@ -3,34 +3,92 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Modern blue/green/white color palette */
+    --primary: 220 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 160 100% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 180 100% 40%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 5%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 220 100% 50%;
+    --background: 0 0% 100%;
+    --foreground: 222 84% 5%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --primary: 220 100% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 160 100% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 180 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --card: 222 84% 5%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 84% 5%;
+    --popover-foreground: 210 40% 98%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 220 100% 60%;
+    --background: 222 84% 5%;
+    --foreground: 210 40% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 76% 46%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 60%;
+    --warning-foreground: 0 0% 100%;
+  }
+
   html {
     font-family: 'Inter', system-ui, sans-serif;
   }
   
   body {
-    @apply bg-gray-50 text-gray-900;
+    @apply bg-background text-foreground;
+  }
+
+  * {
+    @apply border-border;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 disabled:cursor-not-allowed;
   }
   
   .btn-secondary {
-    @apply inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+    @apply inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
   }
   
   .form-input {
-    @apply block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
+    @apply block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm;
   }
   
   .form-textarea {
-    @apply block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
+    @apply block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm;
   }
   
   .form-select {
-    @apply block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm;
+    @apply block w-full border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary sm:text-sm;
   }
 
   /* Professional typography for legal documents */
@@ -239,7 +297,7 @@
 
 /* Focus styles for accessibility */
 .focus-visible:focus {
-  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+  @apply outline-none ring-2 ring-primary ring-offset-2;
 }
 
 /* Mobile-specific styles */
@@ -332,6 +390,45 @@
 
 .notary-block {
   @apply mt-12 p-6 border-2 border-black;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Landing page specific styles */
+.hero-gradient {
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Button animations */
+.btn-animate {
+  transition: all 0.2s ease;
+}
+
+.btn-animate:hover {
+  transform: translateY(-1px);
+}
+
+/* Carousel fade transition */
+.carousel-fade {
+  transition: opacity 1s ease-in-out;
+}
+
+/* Backdrop blur support */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
 }
 
 /* Dark mode support (if needed in future) */

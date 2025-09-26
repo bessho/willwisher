@@ -1,7 +1,7 @@
 import React from 'react';
 import { useInternetIdentity } from './hooks/useInternetIdentity';
 import { useGetCallerUserProfile } from './hooks/useQueries';
-import LoginPage from './pages/LoginPage';
+import LandingPage from './pages/LandingPage';
 import ProfileSetup from './components/ProfileSetup';
 import Dashboard from './pages/Dashboard';
 import LoadingSpinner from './components/LoadingSpinner';
@@ -21,7 +21,7 @@ export default function App() {
   }
 
   if (!isAuthenticated) {
-    return <LoginPage />;
+    return <LandingPage />;
   }
 
   const showProfileSetup = isAuthenticated && !profileLoading && isFetched && userProfile === null;

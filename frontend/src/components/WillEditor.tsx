@@ -520,7 +520,7 @@ export default function WillEditor({ onBack }: WillEditorProps) {
     if (data.hasChildren === 'Yes') {
       articleI += `I have the following children:\n`;
       // Parse children data with consistent date formatting
-      const childrenData = [];
+      const childrenData: Array<{ name: string; birthDate: string }> = [];
       const childrenCount = parseInt(data.childrenCount || '2');
       for (let i = 1; i <= childrenCount; i++) {
         if (data[`child${i}Name`] || data[`child${i}BirthDate`]) {
@@ -550,7 +550,7 @@ export default function WillEditor({ onBack }: WillEditorProps) {
     let articleIII = `I give, devise, and bequeath all my property, both real and personal, of every kind and nature, and wherever situated, which I may own at the time of my death (my "residuary estate"), to the following beneficiaries in the proportions specified:\n\n`;
     
     // Parse beneficiary data
-    const beneficiaries = [];
+    const beneficiaries: Array<{ name: string; relation: string; percentage: string }> = [];
     const beneficiaryCount = parseInt(data.beneficiaryCount || '2');
     for (let i = 1; i <= beneficiaryCount; i++) {
       if (data[`beneficiary${i}Name`] || data[`beneficiary${i}Relation`] || data[`beneficiary${i}Percentage`]) {
@@ -581,7 +581,7 @@ export default function WillEditor({ onBack }: WillEditorProps) {
     
     // Real property bequests
     if (data.hasRealPropertyBequests === 'true') {
-      const realPropertyBequests = [];
+      const realPropertyBequests: Array<{ address: string; beneficiary: string }> = [];
       const realPropertyCount = parseInt(data.realPropertyCount || '1');
       for (let i = 1; i <= realPropertyCount; i++) {
         if (data[`realProperty${i}Address`] || data[`realProperty${i}Beneficiary`]) {
@@ -600,7 +600,7 @@ export default function WillEditor({ onBack }: WillEditorProps) {
     
     // Personal property bequests
     if (data.hasPersonalPropertyBequests === 'true') {
-      const personalPropertyBequests = [];
+      const personalPropertyBequests: Array<{ description: string; beneficiary: string; alternateBeneficiary: string }> = [];
       const personalPropertyCount = parseInt(data.personalPropertyCount || '1');
       for (let i = 1; i <= personalPropertyCount; i++) {
         if (data[`personalProperty${i}Description`] || data[`personalProperty${i}Beneficiary`] || data[`personalProperty${i}AlternateBeneficiary`]) {
@@ -639,7 +639,7 @@ export default function WillEditor({ onBack }: WillEditorProps) {
     articleV += `DIGITAL ASSETS TO BE CLOSED OR MAINTAINED:\n\n`;
     
     // Email accounts
-    const emailAccounts = [];
+    const emailAccounts: Array<{ name: string; provider: string; action: string }> = [];
     const emailAccountCount = parseInt(data.emailAccountCount || '1');
     for (let i = 1; i <= emailAccountCount; i++) {
       if (data[`emailAccount${i}Name`] || data[`emailAccount${i}Provider`] || data[`emailAccount${i}Action`]) {
@@ -658,7 +658,7 @@ export default function WillEditor({ onBack }: WillEditorProps) {
     }
     
     // Social accounts
-    const socialAccounts = [];
+    const socialAccounts: Array<{ name: string; platform: string; action: string }> = [];
     const socialAccountCount = parseInt(data.socialAccountCount || '1');
     for (let i = 1; i <= socialAccountCount; i++) {
       if (data[`socialAccount${i}Name`] || data[`socialAccount${i}Platform`] || data[`socialAccount${i}Action`]) {
@@ -677,7 +677,7 @@ export default function WillEditor({ onBack }: WillEditorProps) {
     }
     
     // Tech accounts
-    const techAccounts = [];
+    const techAccounts: Array<{ name: string; platform: string; action: string }> = [];
     const techAccountCount = parseInt(data.techAccountCount || '1');
     for (let i = 1; i <= techAccountCount; i++) {
       if (data[`techAccount${i}Name`] || data[`techAccount${i}Platform`] || data[`techAccount${i}Action`]) {
@@ -698,7 +698,7 @@ export default function WillEditor({ onBack }: WillEditorProps) {
     articleV += `DIGITAL ASSETS TO BE TRANSFERRED TO A SPECIFIC BENEFICIARY:\n\n`;
     
     // Crypto wallets
-    const cryptoWallets = [];
+    const cryptoWallets: Array<{ name: string; type: string; beneficiary: string }> = [];
     const cryptoWalletCount = parseInt(data.cryptoWalletCount || '1');
     for (let i = 1; i <= cryptoWalletCount; i++) {
       if (data[`cryptoWallet${i}Name`] || data[`cryptoWallet${i}Type`] || data[`cryptoWallet${i}Beneficiary`]) {
@@ -717,7 +717,7 @@ export default function WillEditor({ onBack }: WillEditorProps) {
     }
     
     // Crypto exchanges
-    const cryptoExchanges = [];
+    const cryptoExchanges: Array<{ name: string; platform: string; beneficiary: string }> = [];
     const cryptoExchangeCount = parseInt(data.cryptoExchangeCount || '1');
     for (let i = 1; i <= cryptoExchangeCount; i++) {
       if (data[`cryptoExchange${i}Name`] || data[`cryptoExchange${i}Platform`] || data[`cryptoExchange${i}Beneficiary`]) {
@@ -790,7 +790,7 @@ export default function WillEditor({ onBack }: WillEditorProps) {
     try {
       const testatorName = formData.testatorName || userProfile?.name || '[TESTATOR NAME]';
 
-      const paragraphs = [];
+      const paragraphs: any[] = [];
 
       // Title section with ENHANCED professional legal formatting - Times New Roman throughout
       paragraphs.push(
@@ -1766,6 +1766,3 @@ export default function WillEditor({ onBack }: WillEditorProps) {
     </div>
   );
 }
-
-
-

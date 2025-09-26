@@ -32,7 +32,8 @@ export const useFileUrl = (path: string) => {
             actor,
             envConfig.bucket_name,
             envConfig.storage_gateway_url,
-            envConfig.backend_canister_id
+            envConfig.backend_canister_id,
+            envConfig.project_id
         );
         const url = await storageClient.getDirectURL(path);
         return url;
@@ -70,7 +71,8 @@ export const useFileUpload = () => {
             actor,
             envConfig.bucket_name,
             envConfig.storage_gateway_url,
-            envConfig.backend_canister_id
+            envConfig.backend_canister_id,
+            envConfig.project_id
         );
 
         setIsUploading(true);
@@ -87,6 +89,30 @@ export const useFileUpload = () => {
     return { uploadFile, isUploading };
 };
 
+export const useFileDelete = () => {
+    const { actor } = useActor();
+    const [isDeleting, setIsDeleting] = useState(false);
+    const { invalidateFileList, invalidateFileUrl } = useInvalidateQueries();
+
+    const deleteFile = async (path: string): Promise<void> => {
+        if (!actor) {
+            throw new Error('Backend is not available');
+        }
+
+        setIsDeleting(true);
+
+        try {
+            await actor.dropFileReference(path);
+            await invalidateFileList();
+            invalidateFileUrl(path);
+        } finally {
+            setIsDeleting(false);
+        }
+    };
+
+    return { deleteFile, isDeleting };
+};
+
 // Utility to invalidate queries
 export const useInvalidateQueries = () => {
     const queryClient = useQueryClient();
@@ -100,3 +126,4 @@ export const useInvalidateQueries = () => {
         }
     };
 };
+
